@@ -4,7 +4,35 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-) {
-  // your code here
+
+/*
+use helper function inside the main function
+helper function:
+  parameter element -- document body
+    *declare empty array
+    *if the document body has a class list that has the class name, then push to the array
+    *iterate through the document body child nodes
+        recurse over the child nodes
+  return array
+*/
+
+var getElementsByClassName = function(className) {
+  var arrayResult = [];
+
+  var innerFunction = function (element) {
+    console.log(element);
+    if (element.classList.contains(className)) {
+      arrayResult.push(element);
+    }
+    console.log(element.childNodes);
+    if (element.childNodes) {
+      for (var i = 0; i < element.childNodes.length; i++) {
+        innerFunction(element.childNodes[i]);
+      }
+    }
+  };
+
+  innerFunction(document.body);
+
+  return arrayResult;
 };
