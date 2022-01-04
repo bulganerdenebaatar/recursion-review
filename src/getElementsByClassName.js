@@ -20,19 +20,17 @@ var getElementsByClassName = function(className) {
   var arrayResult = [];
 
   var innerFunction = function (element) {
-    console.log(element);
-    if (element.classList.contains(className)) {
+    // console.log(element);
+    if (element.classList !== undefined && element.classList.contains(className)) {
+      // undefined.contains
       arrayResult.push(element);
     }
-    console.log(element.childNodes);
-    if (element.childNodes) {
-      for (var i = 0; i < element.childNodes.length; i++) {
-        innerFunction(element.childNodes[i]);
-      }
+
+    // when childnodes doesnt have classlist
+    for (var i = 0; i < element.childNodes.length; i++) {
+      innerFunction(element.childNodes[i]);
     }
   };
-
   innerFunction(document.body);
-
   return arrayResult;
 };
